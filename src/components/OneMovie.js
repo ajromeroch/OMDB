@@ -5,11 +5,6 @@ import { getMoviesById } from "../store/movies";
 import { setMovie } from "../store/onemovie";
 
 export default function OneMovie() {
-  //aca necesito que se guarde la SELECCION de pelicula y poder
-  //renderizar la informacion completa de la pelicula
-
-  //selected movie como PARAMETRO/PROPS y de ahi sacar toda la info
-  //desde la pagina
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -22,7 +17,6 @@ export default function OneMovie() {
       const aux = location.pathname.split("/");
       movie = aux[aux.length - 1];
     }
-    //elegir el id de la mierda que esta en el url
     dispatch(getMoviesById(movie)).then((data) =>
       dispatch(setMovie(data.payload))
     );
@@ -30,7 +24,6 @@ export default function OneMovie() {
 
   const theMovie = useSelector((state) => state.oneMovie);
   console.log(theMovie);
-  //console.log(theMovie)
   return (
     <div className="oneMovieDiv">
       <div className="oneMovieOutside">
