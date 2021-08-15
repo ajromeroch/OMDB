@@ -8,8 +8,6 @@ import { getMovies } from "../store/movies";
 import { setMovie } from "../store/onemovie";
 import { loginUser } from "../store/users";
 
-//PROBLEMA DE COMO FUNCIONA EL DROPDOWN AL MOMENTO DE APRETAR, TENGO QUE APRETAR EL ENTER PARA QUE FUNCIONE
-
 export default function Navbar() {
   //Creating a local state to handle the datalist and all the movies displayed
   const [localMovies, setLocalMovies] = useState({});
@@ -21,7 +19,6 @@ export default function Navbar() {
 
   //Defining dispatch to set the movie state
   const dispatch = useDispatch();
-  //let selectedMovie = useSelector((state) => state.movies)
 
   //Defining history to redirect pages
   const history = useHistory();
@@ -36,10 +33,8 @@ export default function Navbar() {
 
   //Setting all changes to the local state for it to be submitted and getAllMovies on every change
   const handleChange = (e) => {
-    //console.log(e.nativeEvent)
     let { value } = e.target;
     setOneMovie(value);
-    //if(e.nativeEvent.data === undefined) handleSubmit(e);
   };
 
   const handleLogout = () => {
@@ -59,10 +54,7 @@ export default function Navbar() {
       .catch((err) => err);
   };
 
-  //When selecting an item from dataList, the e.nativeData.data goes to 'undefinded' (null when erasing, that's why I set it to undefined)
-  // const toogleSubmit = (e) => {
-  //   return e.nativeEvent.data === undefined
-  // }
+  
 
   useEffect(() => {
     dispatch(getMovies(oneMovie)).then((data) => {
