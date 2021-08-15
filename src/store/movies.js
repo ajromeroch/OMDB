@@ -1,10 +1,8 @@
 import {createAsyncThunk, createReducer } from "@reduxjs/toolkit";
 import axios from "axios";
 
-//export const setMovie = createAction("setMovie")
 
 export const getMovies = createAsyncThunk("getMovies", (title) => {
-  //obtiene todas las peliculas
   if(!title) return
 
   return axios
@@ -13,7 +11,6 @@ export const getMovies = createAsyncThunk("getMovies", (title) => {
 });
 
 export const getMoviesById = createAsyncThunk("getMovies", (id) => {
-  //obtiene todas las peliculas
   if(!id) return
 
   return axios
