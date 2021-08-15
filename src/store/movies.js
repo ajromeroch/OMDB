@@ -19,7 +19,6 @@ export const getMoviesById = createAsyncThunk("getMovies", (id) => {
 });
 
 export const moviesReducer = createReducer([], {
-  //[setMovie]: (state, action) => action.payload,
   [getMovies.fulfilled]: (state, action) => action.payload,
   [getMoviesById.fulfilled]: (state, action) => action.payload,
 });
