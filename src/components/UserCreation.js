@@ -1,15 +1,13 @@
 import React from "react";
 import { useHistory } from "react-router";
 import axios from "axios";
-// import { useDispatch } from "react-redux";
-// import { createUser } from "../store/users";
+
 
 export default function UserCreation() {
-  //en este si o si tengo que crear los usuarios
-  //Hooks
+
 
   const history = useHistory();
-  //const dispatch = useDispatch();
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,13 +30,7 @@ export default function UserCreation() {
         console.log(`Error ${err.message}`);
       });
 
-    // dispatch(createUser({ email: email.value, password: password.value }))
-    //   .then((data) => {
-    //     console.log("data", data);
-    //     alert(`usuario ${data.payload.email} creado correctamente`);
-    //     return data;
-    //   })
-    //   .catch((err) => `Error ${err.message}`);
+
   };
 
   return (
