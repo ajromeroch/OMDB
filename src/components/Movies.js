@@ -6,10 +6,6 @@ import { getMovies } from "../store/movies";
 import { setMovieId } from "../store/onemovie";
 import { loginUser } from "../store/users";
 
-//disyuntiva. Soy en teoria capaz de traer un dispatch y cambiar el estado en redux,
-//pero tengo que hacerlo? deberia usar un estado local en este caso dado que quiero renderizar
-//todas las peliculas que seleccione?
-
 export default function Movies() {
   const dispatch = useDispatch();
   const inputMovies = useSelector((state) => state.oneMovie);
@@ -18,14 +14,7 @@ export default function Movies() {
   let user = useSelector((state) => state.users);
 
   useEffect(() => {
-    //dispatch(getMovies(inputMovies))
     getMovies(inputMovies);
-    // .then(data => {
-    //   //Checks for existence and good responses
-    //   if(!data.payload || data.payload.Response === "False") return;
-    //   //Destructures and sets an OBJECT into LocalMovies
-    //   let {Search} = data.payload
-    // })
   }, [inputMovies]);
 
   //set state of the IMBD selected movie
@@ -33,12 +22,9 @@ export default function Movies() {
     dispatch(setMovieId(e));
   };
 
-  ///problema!! no le llega el user antes de que vuelva a renderizar!!
 
   const addFavorites = (e) => {
     //obtengo toda la inforamacion de la pelicula al hacer click
-
-    //aca ver el tema de no agregar repetidos
     let auxFavs = user.favs.map((x) => x.imdbID).includes(e.imdbID);
     if (!auxFavs) {
       dispatch(loginUser({ ...user, favs: [...user.favs, e] }));
@@ -47,17 +33,11 @@ export default function Movies() {
   };
 
   const removeFavorites = (e) => {
-    //obtengo toda la inforamacion de la pelicula al hacer click
-    // {Title: "Batman Begins", Year: "2005", imdbID: "tt0372784", Type: "movie", Poster: "https://m.media-amazon.com/images/M/MV5BOTY4YjI2N2…zQ5YWFkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"}
-    //obj = {...obj, 'c': 5}
-    // console.log("user on click", e);
     console.log("llegue al sacar favorites");
     let favsRemain = [...user.favs].filter((x) => x.imdbID !== e.imdbID);
     dispatch(loginUser({ ...user, favs: favsRemain }));
   };
 
-  //hacer esto me corre un loop infinito en el console log
-  //console.log("llegue a allMOVIES", allMovies);
   return (
     <div className="moviesDiv">
       <div className="moviesOutside">
