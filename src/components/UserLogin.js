@@ -6,7 +6,6 @@ import { loginUser } from "../store/users";
 import axios from "axios";
 
 export default function UserLogin() {
-  //hacer las validaciones correspondientes cuando este mas avanzado
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -23,14 +22,11 @@ export default function UserLogin() {
       .then(({ data }) => {
         history.push("/movies");
         alert("Usuario loggeado correctamente");
-        //console.log("response", data);
-        //        dispatch(loginUser(data.email));
         dispatch(
           loginUser({ email: data.email, status: "LOGGED_IN", favs: [] })
         );
 
         return data;
-        //console.log("res del login", res)
       })
       .catch((err) => {
         alert("Usuario/Password incorrecto, intentar nuevamente");
